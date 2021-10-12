@@ -22,11 +22,11 @@ const { NotImplementedError } = require('../extensions/index.js');
     }
   
     pop() {
-      this.stack.pop(); //array method - push
+      return (this.stack.pop()); //array method - push
     }
 
      peek() {
       return (this.stack[this.stack.length-1]);
     }
-    
+
  }
