@@ -1,40 +1,63 @@
-//const { NotImplementedError } = require('../extensions/index.js');
-
-/**
- * Implement the Stack with a given interface via array.
- *
- * @example
- * const stack = new Stack();
- *
- * stack.push(1); // adds the element to the stack
- * stack.peek(); // returns the peek, but doesn't delete it, returns 1
- * stack.pop(); // returns the top element from stack and deletes it, returns 1
- * stack.pop(); // undefined
-**/
-class Stack {
-  constructor() {
-    this.stack = [];  //init array
-  }
-
-  push(el) {
-    this.stack.push(el);  // array method - push
-  }
-
-  pop() {
-    this.stack.pop(); //array method - push
-  }
-
-  peek() {
-    return (this.stack[this.stack.length-1]);
-  }
+const ListNode = function (x) {
+  this.value = x;
+  this.next = null;
 }
 
+// const { ListNode } = require('../extensions/list-node.js');
 
-const stack = new Stack();
-console.log(stack);
-stack.push(1);
-stack.push(7);
-console.log(stack);
-stack.pop();
-console.log(stack);
-console.log(stack.peek());
+/**
+ * Implement the Queue with a given interface via linked list (use ListNode extension above).
+ *
+ * @example
+ * const queue = new Queue();
+ *
+ * queue.enqueue(1); // adds the element to the queue
+ * queue.enqueue(3); // adds the element to the queue
+ * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
+ * queue.getUnderlyingList() // returns { value: 3, next: null }
+ */
+class Queue {
+  constructor() {
+    this.head = null; //not first element
+    this.tail = null; //not last element
+  }
+
+  getUnderlyingList() {
+
+  }
+
+  enqueue(el) { //add el on the tail
+    let node = new (ListNode);
+    node.value = el;
+    node.next = null;
+    if (this.head === null) { // queue is empty
+      this.head = node;
+      this.tail = node;
+    }
+    else {
+      this.tail.next = node; //state element in the end
+      this.tail = node;  //now tail - is element
+    }
+  }
+
+  dequeue() {
+
+    if (this.head === null) {
+      return null;
+    }
+    else {
+
+      let valueHead = this.head.value;
+      this.head = this.head.next;
+    }
+
+  }
+
+}
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+console.log(queue);
