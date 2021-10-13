@@ -3,19 +3,7 @@ const ListNode = function (x) {
   this.next = null;
 }
 
-// const { ListNode } = require('../extensions/list-node.js');
 
-/**
- * Implement the Queue with a given interface via linked list (use ListNode extension above).
- *
- * @example
- * const queue = new Queue();
- *
- * queue.enqueue(1); // adds the element to the queue
- * queue.enqueue(3); // adds the element to the queue
- * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
- * queue.getUnderlyingList() // returns { value: 3, next: null }
- */
 class Queue {
   constructor() {
     this.head = null; //not first element
@@ -23,36 +11,36 @@ class Queue {
   }
 
   getUnderlyingList() {
-
+    if (this.head === null) { //no nodes
+      return null;
+    } else {
+      let tempNode = this.head;
+      return tempNode; 
+    }
   }
 
   enqueue(el) { //add el on the tail
     let node = new (ListNode);
     node.value = el;
     node.next = null;
-    if (this.head === null) { // queue is empty
+    if (this.head === null) { // queue is empty (no nodes)
       this.head = node;
       this.tail = node;
-    }
-    else {
+    } else {
       this.tail.next = node; //state element in the end
       this.tail = node;  //now tail - is element
     }
   }
 
   dequeue() {
-
-    if (this.head === null) {
+    if (this.head === null) { //no nodes
       return null;
+    } else {
+      let valueHead = this.head.value; //value in head
+      this.head = this.head.next; //change head
+      return valueHead;
     }
-    else {
-
-      let valueHead = this.head.value;
-      this.head = this.head.next;
-    }
-
   }
-
 }
 
 const queue = new Queue();
@@ -61,3 +49,6 @@ queue.enqueue(2);
 queue.enqueue(3);
 queue.enqueue(4);
 console.log(queue);
+console.log(queue.dequeue());
+console.log(queue.getUnderlyingList());
+
